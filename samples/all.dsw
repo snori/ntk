@@ -1,0 +1,221 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# åxçê: Ç±ÇÃ‹∞∏ΩÕﬂ∞Ω Ãß≤Ÿ Çï“èWÇ‹ÇΩÇÕçÌèúÇµÇ»Ç¢Ç≈Ç≠ÇæÇ≥Ç¢!
+
+###############################################################################
+
+Project: "blur"=".\demos\blur\blur.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "firesim"=".\demos\firesim\firesim.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "gl_sample"=".\gl_sample\gl_sample.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "htmlviewer"=".\htmlviewer\htmlviewer.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "noiz"=".\demos\noiz\noiz.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ntk"="..\build\vc6\ntk.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ntk_test"="..\build\vc6\ntk_test.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ntks
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ntks"="..\build\vc6\ntks.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "sample01"=".\sample01\sample01.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sample02"=".\sample02\sample02.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "simplebmpview"=".\simplebmpview\simplebmpview.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ted"=".\ted\ted.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "titoon"=".\titoon\titoon.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "toyozpaint"=".\toyozpaint\toyozpaint.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ntk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

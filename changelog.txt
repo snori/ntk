@@ -1,0 +1,505 @@
+/******************************************************************************
+
+	The NTK Library : CHANGE LOGS
+	Copryright (C) 1998-2003 Noritaka Suzuki
+
+	$Id: changelog.txt,v 1.25 2003/11/19 11:42:04 nsuzuki Exp $
+
+******************************************************************************/
+
+[0.3.2] 2003-11-19 Noritaka Suzuki <snori@toyoz.jp>
+
+ * View::mouse_moved に引数 'uint transit'(ENTERED_VIEW, EXITED_VIEW 等) と 'const Message* data' を追加
+ * Wnd::capturing() があるにもかかわらず View::capturing() を実装していたので後者を削除
+ * Wnd::capturing() を Wnd::is_capturing() に改名
+ * ntk::set_mouse(const Point&) を追加
+ * View::FOLLOW_NONE 指定時の動作を、“Be Book”にならい FOLLOW_LEFT | FOLLOW_TOP と同じになるように変更
+ * View::FOLLOW_CENTER を FOLLOW_H_CENTER と FOLLOW_V_CENTER に分け、センタリング動作を強力(※)に強制するように変更（※シンプルなセンタリングはユーザが自分で実装するにしても難しいことではない為）
+ * View::FOLLOW_x_CENTER が指定されていると、move_to(move_by), resize_to(resize_by) をしてもセンタリングを強制されるように変更
+
+
+[0.3.1] 2003-11-17 20:58 Noritaka Suzuki <snori@toyoz.jp>
+
+ * Window をリサイズする時、メニューが折り返されたりするとその分クライアントエリアの下端が消えてしまうバグを修正
+ * WindowControl に仮想デストラクタを書くのを忘れていたので修正
+ * コントロールのフォントを、デフォルトで ntk::plain_font() になるように変更
+ * ntk::plain_font(), ntk::bold_font(), ntk::fixed_font() はそれぞれ、システムフォントを元に作成するように変更
+ * Font, Pen, Brush の属性をぞれぞれ LOGFONT, LOGPEN, LOGBRUSH で持つように変更
+
+
+[0.3] 2003-11-11 21:04:00 Noritaka Suzuki <snori@toyoz.jp>
+
+ * .i ファイルなどの SWIG 関連ファイルを削除
+ * システム標準のコントロールがあるコントロール (これまでの StdXXXXXX 系) についてはそれを標準のコントロールとし、ntk で独自に実装（これまでのButtonクラス等）するのはやめた
+ * 上の項目と合わせて、Window::XXXXX_LOOK も標準のタイプ (TITLED_LOOK) がシステム標準の LOOK を指定するように変更
+ * NTK_USE_DEBUG_NEW オプション追加。と同時に NTK_CHECK_MEMORY_LEAKS をデフォルトで無効に変更
+
+
+[0.2.18] 2003-11-06 23:12:03 Noritaka Suzuki <snori@alles.or.jp>
+
+ * Entry::extension() が返す文字列に、拡張子の前のドットを含まないように変更
+ * Path::path() を Path::as_string() に改名
+ * Node::path() の戻り値を String から Path に変更 (node.path() とやっていた所は、node.path().as_string() に変更する必要あり
+ * Message のユーザデータ保持機能がメモリリークすることがあったバグを修正
+ * translation_utils::get_bitmap() において、ビットマップデータの後に余分なデータがあると正しく読めていなかったバグを修正
+
+
+[0.2.17.1] 2003-08-01 20:10:31 Noritaka Suzuki <snori@alles.or.jp>
+
+ * StdWindowControl において、NOT_RESIZABLE 系が正しく動作していなかったので修正
+ * デバッグのために DummyWindow が少し見えるようにしていたが、その後直すのを忘れていたようなので修正
+ * なんとも恥ずかしいスペルミスが一箇所見つかったので修正（＾＾；
+ * <ntk/windows/atl.h> で min() の名前が衝突することもあるようなので再定義してみた
+
+
+[0.2.17] 2003-06-16 20:28:05 Noritaka Suzuki <snori@alles.or.jp>
+
+ * SWIG で作成したモジュールが動作しなかった問題が解決したので mod をすこし追加。（ 追加分: mod プロジェクト, ntk.i, defs.i, application.i, handler.i, looper.i, message.i, messagefilter.i, point.i, rect.i, view.i, window.i, wnd.i, debug.i, status.i, version.i )
+ * ディレクトリ構成を少し変更 ( ntk/std -> ntk/windows )
+ * namespace Ntk = ntk を追加
+ * namespace ntk { class Window {}; typedef Window window_t; } こんな感じで別名を追加（したけど、VC6 だとコンパイラのバグ（だとおもう）で、継承時、親クラスのコンストラクタが呼び出せない。
+ * Directory::count_entries(), Directory::get_next_entry() を実装
+ * Entry::is_file(), Entry::is_directory() を実装
+ * Status::is_valid() の DONT_EVALUATE していを、is_valid_without_eval() をとして別関数に分離
+
+
+[0.2.16] 2003-05-17 20:30:37 Noritaka Suzuki <snori@alles.or.jp>
+
+ * DC::get_xxxx() が設定後のオブジェクトを返していたので設定前のモノを返すように修正
+ * DC に back_color 属性を追加
+ * GDIObject 達に属性値の getter を追加
+ * DC::pop_font() でメモリリークがあったので修正
+ * DC::draw_bitmap で拡大縮小される場合、正しく動作していなかったので修正
+ * TabBar で、マウスによる操作の時しか invoke() されていなかったので invoke() は activate_tab() でするように変更
+ * Path::get_leaf() が期待通りに動いていなかったようなので修正
+ * Titoon を改良。→ samples/titoon/changelog.txt [v1.0.1]
+ * RGBColor に演算子 *, *=, /, /= を追加
+ * DefaultWindowControl の時のタイトルバーの色を、グラデーション指定時の2色の平均値にするように変更
+ * Status::is_valid() はデフォルトではエラーメッセージを表示しないように変更
+
+
+[0.2.15] 2003-05-03 04:02:00 Noritaka Suzuki <snori@alles.or.jp>
+
+ * samples/simplebmpview 復活
+ * HTMLView で、IWebBrowser2 のオブジェクトを Release() し忘れていたので修正
+ * HTMLView::ADDRESS_CHANGED メッセージ追加
+ * v0.2.13 で Wnd::system_message_received() の WM_WINDOWPOSCHANGED 部分で、何気なく def_window_proc() を呼ぶのを頭に持ってきたが、やはり順番は重要らしくエンバグしてしまっていたので修正
+ * {Window|View}::system_message_received() の WM_PAINT で、共通の処理をしていた部分を Wnd::system_message_received() に移動
+ * Wnd::type() は名前が一般的過ぎて継承先クラスのメソッド名と被る可能性があるので wnd_type() に変更
+ * set() というメソッド名を reset() に変更。( statut_t, Rect, Point 等
+ * samples/titoon 追加
+ * Invoker::invoke() が取る引数を const NMessage* から const NMessage& に変更
+ * Point/Rect に operator[](int) を追加
+ * Rect::offset_by(), Rect::offset_to() に Point を引数に取るバージョンを追加
+ * 値が st::OK の時 Status::operator Status<st>() を実行すると落ちるバグを修正
+ * ntk::mb2wc(), ntk::wc2mb() 追加
+ * Version::save(), Version::load() 追加
+ * Version に 比較演算子追加
+ * ntk/support/test/version_test.cpp 追加
+
+
+[0.2.14] 2003-04-30 20:42:18 Noritaka Suzuki <snori@alles.or.jp>
+
+ * Scintilla 関係を、標準で使用可能になるように変更
+
+
+[0.2.13] 2003-04-30 20:27:47 Noritaka Suzuki <snori@alles.or.jp>
+
+ * 名称変更: GDIBitmap -> DDB。それに合わせて Bitmap も DIB と typedef
+ * DefaultWindowControl で、NOT_CLOSABLE を考慮していなかったので修正
+ * samples/demos/noiz, samples/demos/blur 追加
+ * samples/firesim を samples/demos/firesim に移動
+ * DC::draw_bitmap() が Bitmap のポインタをとっていたが、Bitmap の参照に変更
+ * 名前を Window::icon() -> Window::icon_handle(), Window::set_icon() -> Window::set_icon_handle(), Window::menu() -> Window::menu_handle(), Window::set_menu() -> Window::set_menu_handle() と変更
+ * Translation Kit 周りを弄り始めた
+ * ntk::spawn_thread() の int priority と void* data にデフォルト引数を追加
+ * StdMenuBar の RESIZE_TO_FIT を処理する時、parent() が NULL でも正しく動作するように修正
+ * View::CLIP_CHILDREN フラグが邪魔をしていて WS_CLIPCHILDREN が機能していなかったので View::CLIP_CHILDREN を廃止
+ * 上の項目とあわせて、階層関係にある View の描画周りを改善。（invalidate() すると子に対しても invalidate() するように
+ * DC::push_xxxx(const GDIObject&) が正しく動作していなかったので修正
+ * Rect に operator&=, operator&, operator|=, operator| を追加
+
+
+[0.2.12] 2003-04-19 03:47:00 Noritaka Suzuki <snori@alles.or.jp>
+
+ * ntk::application_directory() を廃止し、Application::directory() に移動
+ * samples/htmlviewer をちょっと修正
+ * Scintilla に行番号表示・非表示のフラグを追加
+ * DefaultWindowControl が Widnow::MODAL_LOOK, Window::FLOATING_LOOK, BORDERED_LOOK に対応
+
+
+[0.2.11] 2003-04-18 21:06:42 Noritaka Suzuki <snori@alles.or.jp>
+
+ * Window::STD_xxx_LOOK で、最大化最小化ボタンが押された時、zoom(), minimize() が呼ばれるように修正
+ * Release モード時の error() の出力を無効にして、戻し忘れていたので修正
+ * Rect::inset_by() が is_valid() の状態によって動作を変えていたが、その必要はなさそうなので修正
+ * すべてのヘッダファイルの先頭に "#pragma once" を追加
+ * HTMLView 追加
+ * samples/htmlviewer 追加
+ * 最初期の実装では必須だったので CreateWindowEx()＠Wnd::Wnd() の最後のパラメータには this を渡していたが、現在は必要なくなっているので NULL を渡すように変更
+
+
+[0.2.10] 2003-04-08 20:19:09 Noritaka Suzuki <snori@alles.or.jp>
+
+ * GLView の DEFAULT_FLAGS, DEFAULT_STYLE が間違って記述してあったので修正
+ * StdMenuBar の DEFAULT_RESIZING_MODE を "FOLLOW_LEFT_RIGHT | FOLLOW_TOP" に変更
+ * MessageFilter のコンストラクタに引数無しバージョンを追加
+ * Looper::message_received() の QUIT_REQUESTED と Window::dispatch_message() の最後で無意味なことをしていたので修正
+ * TabBar コントロール追加
+ * Window のウィンドウスタイルに STD_XXX_LOOK 以外を指定した時、アイコンを設定してもタスクバーにアイコンが出なかったのでスタイルに WS_SYSMENU を追加
+ * Scintilla のインタフェイスを強化
+
+
+[0.2.9.1] 2003-03-30 22:37:00 Noritaka Suzuki <snori@alles.or.jp>
+
+ * samples でコンパイル出来なくなっていた物があったので修正
+
+
+[0.2.9] 2003-03-30 21:21:00 Noritaka Suzuki <snori@alles.or.jp>
+
+ * <ntk/interface/kit.h> にここ最近の追加分を足し忘れていたので修正
+ * どうも頭が混乱していたようで、Window での QUIT_REQUESTED の処理がおかしかった。正常に動作するように修正
+ * Window において、zoom と maximize が同じ意味で存在していたので zoom に統一
+ * Window の zoom, minimize のフラグ設定がおかしかったので修正
+ * Window におけるデフォルトのフォーカスは Panel にあるように修正
+ * 上のとあわせて、View::detached_from_window_() 時に自分がフォーカスを持っていたら window()->panel()->make_focus() するように修正
+ * いくら ::ntk の中とはいえ、やっぱり std という名前空間を使うのはすっきりしないので standard に名前変更。グローバルの typedef 名は StandardXxxxXxxx だと長いので StdXxxxXxxx のままに
+ * DC に push_GDIObject()/pop_GDIObject() を追加。ついでにちょっと改良して効率を良くした
+ * ntk/interface/test/dc_test.cpp 追加
+ * ntk::alert() とパラメータの順番 を同じにするため ntk::message_box() のパラメータの順番を変更
+ * Message::find_xxx(const String& name, ...) で name のデータが無かったときに取得するものが不定のデータになっていたので 0 にするように変更
+ * NTK_TYPEDEF_TYPES_AS_GLOBAL_TYPE をデフォルトでは無効に
+
+
+[0.2.8] 2003-03-24 20:10:55 Noritaka Suzuki <snori@alles.or.jp>
+
+ * ntk::TextView 復活
+
+
+[0.2.7] 2003-03-24 18:40:01 Noritaka Suzuki <snori@alles.or.jp>
+
+ * NTK_ENABLE_WARNING_xxxx を NTK_DISABLE_WARNING_xxx として、指定方法を逆に変更
+ * ScrollView, TerminalView, Terminal 復活 (全然使えない状態だけど・・・)
+ * Window::flag の設定がきちんと出来ていなかったので修正
+ * Wnd::set_style(...)/Wnd::set_ex_style(...) のエラー判定方法を、元の値が 0 であった時でも正しく動作するように修正
+ * Window::FLOATING_xxx_FEEL がそれなりに動作するようになった
+ * Font の属性値を取得できるように変更
+ * WindowTitleBar のボタン配置を微妙に修正
+ * WS_EX_TOOLWINDOW の使用をしない方向に修正
+ * テキストエディタサンプル「TED」を少し機能強化
+ * ntk::std::FontPanel（フォント選択ダイアログ）追加
+ * ntk::Scintilla Edit Control クラス追加
+ * ntk::std::StatusBar クラス復活
+ * Entry::is_exists() 実装
+
+
+[0.2.6] 2003-03-14 16:56:26 Noritaka Suzuki <snori@alles.or.jp>
+
+ * デフォルト値を扱いやすくするために Window::DEFAULT_xxx を追加
+ * StdMenu 系復活。ついでにある程度（今までは、存在するだけで動作はしなかった）機能するように実装（メニューとしてウィンドウに add_child() 出来るようにした）
+ * StdWindowControl::client_frame() const が window_bounds() を呼んでいたのを window_frame() に修正
+ * Window::resize_to() にサイズ計算の部分に不具合があったので修正
+ * Wnd::system_message_received() の WM_MOVE/WM_SIZE で処理していた m_frame の設定を WM_WINDOWPOSCHANGED で処理するように変更
+ * 上のと絡んで、Window で STD_xxx_WINDOW を使用するとき、ウィンドウの大きさ判定にバグがあったのを修正
+ * Window::~Window() の中で Window::frame() を呼ぶと落ちるバグ。DefaultWindowControl に m_title_bar_height を追加して修正
+ * DefaultWindowControl の WindowTitleBar で、クローズボタン、最大化ボタン、最小化ボタンの並びを Windows の標準に合わせるように変更
+
+
+[0.2.5] 2003-03-07 20:20:34 Noritaka Suzuki <snori@alles.or.jp>
+
+ * FilePanel を Storage Kit から Interface Kit に移動
+ * RichTextView は今まで 'EDIT' コントロールだったが、名前通り 'RichEdit20(A|W)' を使用するように変更
+ * Panel が Window を子に出来るように変更。MDI アプリケーションのようなものが作成できるはず
+ * SystemColorID::CONTAINER_BACKGROUND_COLOR 追加
+ * いくつか N_xxx -> NTK_xxx を直し忘れていたところがあったので修正
+ * ところどころエラー検査をするように変更
+
+
+[0.2.4] 2003-03-07 10:9:44 Noritaka Suzuki <snori@alles.or.jp>
+
+ * StdControls 復活。(NStdButton -> ::ntk::std::Button 等)
+ * samples/gl_sample に GL_Sample を追加
+ * samples/all.dsw を追加
+
+
+[-] 2003-03-06 19:57:36 Noritaka Suzuki <snori@alles.or.jp>
+
+ * WindowControl 周りを一新。そのため Window も大幅に変更を加えた
+ * Window::MODAL_xxx_FEEL, Window::FLOATING_xxx_FEEL を指定されているウィンドウが、ウィンドウフォーカス変更時に TOPMOST 属性をきちんと処理するように修正
+
+
+[0.2.3] 2003-03-05 21:23:31 Noritaka Suzuki <snori@alles.or.jp>
+
+ * Widnow::post_message() を追加し、WM_xxx を post_message しても正しく動作するように修正
+ * class DialogPanel を追加
+
+
+[0.2.2] 2003-03-05 17:36:49 Noritaka Suzuki <snori@alles.or.jp>
+
+ * Geometry Kit 復活。不要なものだと思うが、自分がよく使うので
+ * テストコードをいくつか追加
+ * NTK_TYPEDEF_LOWERCASE_ONLY_TYPE_NAME 定義時のインナークラスの typedef 名を xxx_type から xxx_t に変更
+ * FilePanel 復活
+
+
+[0.2.1] 2003-03-03 13:52:28 Noritaka Suzuki <snori@alles.or.jp>
+
+ * N_ で始まっていたマクロ名を NTK_ で始まるように変更
+ * ntk::Window  =>  NWindow/ntk_window とうの識別子変更設定オプション追加（NTK_TYPEDEF_TYPES_AS_GLOBAL_TYPE, NTK_TYPEDEF_GLOBAL_NCLASS, NTK_TYPEDEF_LOWERCASE_ONLY_TYPE_NAME を追加）
+ * coding.txt に項目を追加
+ * Status<T>::operator Status<st>() が正しくコンパイルできないでいたのを修正
+ * GLView 復活
+
+
+[0.2] 2003-02-24 00:00:00 Noritaka Suzuki <snori@alles.or.jp>
+
+ * ライブラリ全体を大幅に整理
+	- ディレクトリ構造変更
+	- 記述ルール変更 (すべてを namespace ntk に含めるように変更等。SEE ALSO: coding.txt)
+	- ライブラリ統一 (nlib + ntk + nuts -> ntk)
+ * 名前空間を Ntk から ntk へまた変更
+ * クラスも名前空間 ntk 含めるようにしたためクラス名頭の 'N' を廃止（typedef で残そうか思案中）
+ * NString -> ntk::String
+ * できるだけビット数限定型整数型 (ex. int8, int16, int32, uint32) を使用しないようにし、int/uint を使用するように変更
+ * ファイル名を全部小文字で記述するように変更
+ * ntk::Status を大きく改良
+ * CppUnit を使用してテストコードを書く
+ * format_string() を ntk/support/utility に移動
+ * message_received() 等のメソッドで NMessage& を受け取っていたところを const ntk::Message& を受けるように変更
+ * namespace ntk できちんと囲むようにしたため、NGDIPen 等の GDI オブジェクトクラスは GDI の文字をなくすように変更（GDIPen -> Pen）
+ * ただし、NGDIBitmap だけは DIB を表す ntk::Bitmap と名前が衝突するため GDIBitmap に変更
+ * Status のコンストラクタを bool も取れるように拡張。これにより bool の代わりとしても利用できるようになる
+ * Wnd::add_child(), Wnd::remove_child() の返り値の型を bool から status_t に変更
+
+
+[0.1.21] 2002-02-16 00:00:00 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nlib] NException(include/nlib/Exception.h, src/nlib/Exception.cpp) を削除
+ * [nlib] NStack(include/nlib/Stack.h) を削除し、include/nlib/std_stack.h を追加
+
+
+[0.1.20] 2002-12-26 13:44:44 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nlib] NPath::normalize() を実装
+ * [mod] Ntk.i も include 以下のディレクトリに移動
+
+
+[0.1.19] 2002-12-20 16:25:32 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nlib] NPath::get_parent() がバグっていたので修正
+
+
+[-] 2002-12-20 10:25:12 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [mod] Ntk.i 以外の各 .i ファイルを include 以下のディレクトリに移動
+ * [mod] 生成された実装ファイルをデバッグ版とリリース版で別にするように変更
+
+
+[-] 2002-12-19 18:57:28 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nlib] NPath::_remove_last_separator() が正しく動作していなかったバグを修正
+ * [nlib] NDirectory::m_entry を消し忘れて NNode::m_entry とカブッていたのを修正
+
+
+[-] 2002-12-19 13:23:26 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk/nuts] NResString を NTK から Nuts に移動
+
+
+[0.1.18.1] 2002-12-16 19:4:14 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [rbntk] include/rbntk を消し忘れていたので削除した
+
+
+[0.1.18] 2002-12-16 18:58:58 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nlib] NStatus の what_without_eval(), is_valid_without_eval() を廃止
+ * [samples/tyzpaint] 画像の読み込みに対応
+
+
+[0.1.17] 2002-12-16 16:15:2 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [*] 全ソースファイルの "#include <nlib/win_window.h>" のコメントアウトをはずした。windows.h をインクルードするかしないかは nlib/win_window.h の中でまとめて操作するようにする
+ * [nlib] 警告のレベルを 4 にして警告が出ないように修正(一応)・・・・・・・・・・・・して、やっぱり元に戻す
+
+
+[-] 2002-12-05 19:9:29 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nlib] NStatus の標準エラーコードに NO_INIT を追加
+
+
+[-] 2002-12-05 18:24:10 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk] BEGIN_NAMESPACE_NTK...END_NAMESPACE_NTK を廃止
+ * [nuts] BEGIN_NAMESPACE_NUTS...END_NAMESPACE_NUTS を廃止
+ * [nrb] BEGIN_NAMESPACE_NRB...END_NAMESPACE_NRB を廃止
+ * [ntk] 名前空間名を ntk から Ntk に変更
+ * [nuts] 名前空間名を nuts から Nuts に変更
+ * [nrb] 名前空間名を nrb から Nrb に変更
+
+
+[-] 2002-12-05 17:24:40 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nlib] N_BEGIN_NAMESPACE()...N_END_NAMESPACE(), BEGIN_NAMESPACE_NLIB...END_NAMESPACE_NLIB を廃止
+ * [nlib] 名前空間名を nlib から Nlib に変更(頭文字のみ大文字に)
+ * [nlib] CppUnit を少し導入。まずは NPathTest, NDirectoryTest を追加
+ * [nlib] Storage Kit を作成中
+
+
+[-] 2002-12-04 20:12:56 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nlib] NFlattenable を ntk から nlib に移した
+ * [nlib] Storage Kit を BeOS API 風に近づける為 NStatable, NPath, NNode, NSymLink, NEntry, NEntryList を追加し、NDirectory も大幅に改良
+ * [nlib] nlib::current_directory() を未実装に戻した
+ * [nlib] NStatus(status_t) の標準エラーコードに NO_MEMORY と BAD_VALUE を追加
+
+
+[0.1.16] 2002-12-03 18:14:47 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk] NAlert::go(...) の同期版(ダイアログ的)と非同期版を実装
+ * [ntk] NApplication::message_loop() でやっていた ARGV_RECEIVED の処理を NApplication::run() でやるように変更
+ * [ntk] NInvoker にコピーコンストラクタを追加
+ * [ntk] NWindow::dispatch_message() で QUIT_REQUESTED のときに delete this; するのに quit_requested() の返り値を考慮していなかったバグを修正
+ * [nuts] NStdControlBar をテスト的に追加
+ * [nuts] NStdToolBar でボタンの追加時に TBSTYLE_AUTOSIZE を追加指定
+ * [samples/tyzpaint] 引き続き構造改革中
+
+
+[0.1.15] 2002.11.28 15:24:2 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nlib] NVersion::release_type() を削除
+ * [mod] Window/View は Ruby の GC と相性が悪いようなので、%freefunc で何もしない(delete しない)関数を登録するように変更
+ * [mod] .i ファイルの作成方式を、ヘッダファイルの書式を極力変えないよう方向に変更
+
+
+[0.1.14] 2002.11.25 20:47:51 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk] NStringView: 縦方向の align に対応
+ * [ntk] DummyWindow の NApplication::m_window_list への登録は一番最初に行うように変更
+ * [mod] GC に関する部分のコツがつかめていないので開発を一時中断する
+ * [samples/tyzpaint] 構造改革中
+
+
+[0.1.13] 2002.11.20 18:50:46 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [mod] NLib: Status.i NTK: Application.i, Handler.i, Looper.i, View.i, Window.i, Wnd.i. Nuts: ApplicationWindow.i を新規に追加
+ * [mod] NString や uint32 等の型は今までは std::string や int などに直接書き換えていたが、プリプロセッサで対処するように変更
+
+
+[0.1.12] 2002.11.18 18:57:50 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [mod] プロジェクトの新規追加。(NTK)Mod(ule)。SWIG を利用し各スクリプト用のモジュールを作成する。まずは nlib から少しずつ進める予定
+ * [rbntk] mod プロジェクトの追加に伴いお役御免（プロジェクト削除）
+ * [samples/rbinc] rbntk 廃止に伴い、該当個所を修正
+
+
+[0.1.11.1] 2002.11.15 17:42:46 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nuts] NStdToolBar をいろいろ修正
+
+
+[0.1.11] 2002.11.14 19:51:33 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk] ntk::global_main() の最後に rescue_error() をデバッグように入れてそのままだったので修正
+ * [nuts] NStdToolBar をいろいろ修正
+ * [sample/ted] ファイルの読み込み/書き込み処理を追加
+
+
+[0.1.10.2] 2002.11.13 18:52:27 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk] NWnd/NWindow/NView の解放処理を大幅に修正。どうも今まで、どこにも所属しない NView を delete するのには問題があった模様。
+ * [ntk] NWnd::type() を追加し、極力 dynamic_cast による判定をなくすように変更
+ * [ntk] 解放処理の変更に伴って、子ウィンドウの解放も自分で処理するように変更。（今まではシステムが勝手にやってくれていたのでまかせてた）
+
+
+[0.1.10.1] 2002.11.12 17:35:36 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk] NAert で text() の文字数が少ない状態で go() すると、ウィンドウが各ボタンを収めきれない大きさで表示されてしまっていたバグを修正
+ * [ntk] NWindow::dispatch_message() での自分を解放する処理にバグ(m_hwnd = NULL していなかった)があったのを修正
+
+
+[0.1.10] 2002.11.12 17:5:4 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk] NView の style にデフォルトで WM_CLIPSIBLINGS, WM_CLIPCHILDREN をつけるように変更
+ * [nuts] NStdStatusBar, NStdToolBar を追加
+ * [samples/ted] ツールバーとステータスバーを追加
+
+
+[0.1.9] 2002.11.7 19:35:32 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk] NWindow においてデストラクト時に frame() を呼ぶと落ちるバグを修正
+ * [ntk] Accelerator に対応
+ * [ntk] NWindow::STD_*_LOOK の時でもリソースによるメニューの操作ができるように修正
+
+
+2002.11.6 19:30:12 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nlib] uint32 等の基本型の定義方法を変更
+
+
+2002.10.1 19:10:16 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [rbntk] Alert を簡単に実装
+
+
+2002.9.13 21:11:31 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [rbntk] RBNTK_WRAP_DATA の引数の順番が間違っていたので訂正
+ * [rbntk] T_DATA の生成メソッドは "new" と "initialize" の二つで行うようなのでそのように変更
+
+
+2002.9.10 18:27:13 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [rbntk] プロジェクト作成
+
+
+2002.9.17 11:38:46 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk] main() の argv 引数を 'const NString agrv[]' から 'const char_t* argv[]' に戻した
+ * [ntk] N_CONSOLE_APPLICATION に対応したつもり
+
+
+2002.9.13 21:10:18 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [ntk] NApplication::set_version() の追加
+
+
+2002.9.13 21:8:10 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nrb] NRString のコンストラクタで型チェックをするようにしてみた
+ * [nrb] nrb::cObject() 系の関数を nrb/Ruby.h から nrb/Defs.h に移動
+ * [nrb] エラー出力に対応してみる（途中）
+
+
+2002.9.13 17:43:36 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nrb] nrb::new_...() を nrb::..._new() に変更 (例. new_string -> String_new)
+ * [nrb] ruby 本体の変数のエクスポートがうまくいかなかったので その値を返す関数をエクスポートするようにした
+ * [nrb] NRuby::eval は例外を保護するように変更
+
+
+2002.9.10 17:33:56 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nrb] 一通りコンパイルできるようになった
+ * [nrb] エクスポートし忘れていたところが多々あったので修正
+ * [nrb] Copyright 表記追加
+
+
+2002.9.10 11:14:23 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nrb] 基本型を担うクラスの作成（NRClass, NRString, NRFixnum）
+
+
+2002.9.9 20:25:11 Noritaka Suzuki <snori@alles.or.jp>
+
+ * [nrb] プロジェクト作成
+
+
+2002.8.27 Noritaka Suzuki <snori@alles.or.or.jp>
+
+ * [ntk/nuts] NApplication にデフォルトでセッティング保存機能を持たせようと思っていたが必ずしも必要な機能ではないので削った。その代わりセッティングは Nuts の NSetting を使うようにする。
+
+
+2002.8.7 Noritaka Suzuki <snori@alles.or.or.jp>
+
+ * [ntk] nkt::NTK_MESSAGE の値を 'WM_USER + 0' から 'WM_APP + 0' に変更

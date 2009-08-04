@@ -1,0 +1,14 @@
+ntk
+ntkd
+ntks
+ntksd
+ntk_test
+ntk_testd
+mod
+modd
+mod_test
+mod_testd
+*.ncb
+*.opt
+*.plg
+*.aps

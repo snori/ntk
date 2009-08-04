@@ -1,0 +1,217 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+ID_TITOON_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "ファイル(&F)"
+    BEGIN
+        MENUITEM "新規作成...(&N)\tCtrl+N",     IDM_FILE_NEW
+        MENUITEM "開く(&O)...\tCtrl+O",         IDM_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "保存(&S)\tCtrl+S",            IDM_FILE_SAVE
+        MENUITEM "名前を付けて保存(&A)...\tCtrl+Shift+S", IDM_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        POPUP "インポート"
+        BEGIN
+            MENUITEM "EasyToon (.ezt)...",          IDM_FILE_IMPORT_EZT
+            , GRAYED
+        END
+        POPUP "エクスポート"
+        BEGIN
+            MENUITEM "EasyToon (.ezt)...",          IDM_FILE_EXPORT_EZT
+            , GRAYED
+            MENUITEM "連番 BMP (xxx_#.bmp)...",     IDM_FILE_EXPORT_SEQUENTIAL_IMAGE
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "終了(&X)\tAlt+F4",            IDM_FILE_EXIT
+    END
+    POPUP "編集(&E)"
+    BEGIN
+        MENUITEM "取り消し(&U)\tCtrl+Z",        IDM_EDIT_UNDO
+        MENUITEM "やり直し(&R)\tCtrl+Y",        IDM_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "切り取り(&T)\tCtrl+X",        IDM_EDIT_CUT
+        MENUITEM "切り取ってフレームを削除\tCtrl+Shift+X", 
+                                                IDM_EDIT_CUT_ERASE
+        MENUITEM "コピー(&C)\tCtrl+C",          IDM_EDIT_COPY
+        MENUITEM "貼り付け(&P)\tCtrl+V",        IDM_EDIT_PASTE
+        MENUITEM "新規フレームに貼り付け\tCtrl+Shift+V", 
+                                                IDM_EDIT_PASTE_INSERT
+        MENUITEM SEPARATOR
+        MENUITEM "フレームの挿入(&I)\tINS",     IDM_EDIT_INSERT_FRAME
+        MENUITEM "フレームの削除(&E)\tDEL",     IDM_EDIT_ERASE_FRAME
+    END
+    POPUP "表示(&V)"
+    BEGIN
+        MENUITEM "次のフレーム(&N)\t→",        IDM_VIEW_NEXT_FRAME
+        MENUITEM "前のフレーム(&P)\t←",        IDM_VIEW_PREV_FRAME
+        MENUITEM SEPARATOR
+        MENUITEM "拡大\tPage Up",               IDM_VIEW_ZOOM_IN
+        MENUITEM "縮小\tPage Down",             IDM_VIEW_ZOOM_OUT
+        POPUP "拡大率(&Z)"
+        BEGIN
+            MENUITEM "25%",                         IDM_VIEW_ZOOM_25
+            MENUITEM "50%",                         IDM_VIEW_ZOOM_50
+            MENUITEM SEPARATOR
+            MENUITEM "100%",                        IDM_VIEW_ZOOM_100
+            MENUITEM SEPARATOR
+            MENUITEM "200%",                        IDM_VIEW_ZOOM_200
+            MENUITEM "400%",                        IDM_VIEW_ZOOM_400
+            MENUITEM "800%",                        IDM_VIEW_ZOOM_800
+            MENUITEM "1600%",                       IDM_VIEW_ZOOM_1600
+        END
+    END
+    POPUP "ツール(&T)"
+    BEGIN
+        MENUITEM "アニメーションの再生(&P)...\tCtrl+P", 
+                                                IDM_TOOL_PREVIEW_ANIMATION
+    END
+    POPUP "ヘルプ(&H)"
+    BEGIN
+        MENUITEM "バージョン情報(&A)...",       IDM_HELP_ABOUT
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+ID_TITOON_ACCELERATOR ACCELERATORS DISCARDABLE 
+BEGIN
+    "C",            IDM_EDIT_COPY,          VIRTKEY, CONTROL, NOINVERT
+    "N",            IDM_FILE_NEW,           VIRTKEY, CONTROL, NOINVERT
+    "O",            IDM_FILE_OPEN,          VIRTKEY, CONTROL, NOINVERT
+    "P",            IDM_TOOL_PREVIEW_ANIMATION, VIRTKEY, CONTROL, NOINVERT
+    "S",            IDM_FILE_SAVE,          VIRTKEY, CONTROL, NOINVERT
+    "S",            IDM_FILE_SAVE_AS,       VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    "V",            IDM_EDIT_PASTE,         VIRTKEY, CONTROL, NOINVERT
+    "V",            IDM_EDIT_PASTE_INSERT,  VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_DELETE,      IDM_EDIT_ERASE_FRAME,   VIRTKEY, NOINVERT
+    VK_INSERT,      IDM_EDIT_INSERT_FRAME,  VIRTKEY, NOINVERT
+    VK_LEFT,        IDM_VIEW_PREV_FRAME,    VIRTKEY, NOINVERT
+    VK_LEFT,        IDM_VIEW_PREV_FRAME,    VIRTKEY, CONTROL, NOINVERT
+    VK_LEFT,        IDM_VIEW_PREV_FRAME,    VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_NEXT,        IDM_VIEW_ZOOM_OUT,      VIRTKEY, NOINVERT
+    VK_PRIOR,       IDM_VIEW_ZOOM_IN,       VIRTKEY, NOINVERT
+    VK_RIGHT,       IDM_VIEW_NEXT_FRAME,    VIRTKEY, NOINVERT
+    VK_RIGHT,       IDM_VIEW_NEXT_FRAME,    VIRTKEY, CONTROL, NOINVERT
+    VK_RIGHT,       IDM_VIEW_NEXT_FRAME,    VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    "X",            IDM_EDIT_CUT,           VIRTKEY, CONTROL, NOINVERT
+    "X",            IDM_EDIT_CUT_ERASE,     VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    "Y",            IDM_EDIT_REDO,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            IDM_EDIT_UNDO,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            IDM_EDIT_REDO,          VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ID_NEW_DOCUMENT_DIALOG DIALOG DISCARDABLE  0, 0, 129, 63
+STYLE WS_CHILD
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    EDITTEXT        ID_WIDTH,59,7,54,12,ES_AUTOHSCROLL
+    RTEXT           "幅：",IDC_STATIC,27,10,26,8
+    EDITTEXT        ID_HEIGHT,59,22,54,12,ES_AUTOHSCROLL
+    RTEXT           "高さ：",IDC_STATIC,27,24,26,8
+    DEFPUSHBUTTON   "OK",IDOK,20,42,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,72,42,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    ID_NEW_DOCUMENT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 122
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 56
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
